@@ -4,14 +4,16 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    // Метод, указывающий на класс конфигурации
+    // Метод, указывающий на класс конфигурации Data
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class<?>[]{
+                DataConfig.class
+        };
     }
 
 
-    // Добавление конфигурации, в которой инициализируем ViewResolver, для корректного отображения jsp.
+    // Конфигурация WMC
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
