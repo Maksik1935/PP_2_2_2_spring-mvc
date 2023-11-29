@@ -4,12 +4,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    // Метод, указывающий на класс конфигурации Data
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{
-                DataConfig.class
-        };
+        return null;
     }
 
 

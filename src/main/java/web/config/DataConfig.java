@@ -2,6 +2,7 @@ package web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -17,8 +18,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("web.dao")
 @PropertySource("classpath:db.properties")
+@ComponentScan(value = "web")
 public class DataConfig {
 
     @Autowired
@@ -42,18 +43,11 @@ public class DataConfig {
 
         Properties jpaProperties = new Properties();
 
-        jpaProperties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         jpaProperties.put("hibernate.hbm2ddl.auto",
                 env.getRequiredProperty("hibernate.hbm2ddl.auto")
         );
-        jpaProperties.put("hibernate.ejb.naming_strategy",
-                env.getRequiredProperty("hibernate.ejb.naming_strategy")
-        );
         jpaProperties.put("hibernate.show_sql",
                 env.getRequiredProperty("hibernate.show_sql")
-        );
-        jpaProperties.put("hibernate.format_sql",
-                env.getRequiredProperty("hibernate.format_sql")
         );
 
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
